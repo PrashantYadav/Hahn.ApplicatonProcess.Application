@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Hahn.ApplicatonProcess.May2020.Domain.Models;
 using Hahn.ApplicatonProcess.May2020.Data.Context;
 using Hahn.ApplicatonProcess.May2020.Domain.Services.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
 {
@@ -17,9 +18,12 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
     public class ApplicantsController : ControllerBase
     {
         private readonly IApplicantService _applicantService;
-        public ApplicantsController(IApplicantService applicantService)
+        private readonly ILogger<ApplicantsController> _logger;
+
+        public ApplicantsController(IApplicantService applicantService, ILogger<ApplicantsController> logger)
         {
             _applicantService = applicantService;
+            _logger = logger;
         }
 
         // GET: api/Applicants
@@ -30,6 +34,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
 
             if (applicants == null)
             {
+                _logger.LogTrace("No applicants found");
                 return NotFound();
             }
 
@@ -44,6 +49,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
 
             if (applicant == null)
             {
+                _logger.LogTrace("Applicant not found with Id" + id);
                 return NotFound();
             }
 
@@ -59,8 +65,9 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
                 return BadRequest();
             }
 
-            if(await _applicantService.UpdateApplicantAsync(applicant) == null)
+            if (await _applicantService.UpdateApplicantAsync(applicant) == null)
             {
+                _logger.LogTrace("Applicant not found for edit with Id" + applicant.Id);
                 return NotFound();
             }
 
@@ -82,6 +89,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
             var applicant = await _applicantService.DeleteApplicantByIdAsync(id);
             if (applicant == null)
             {
+                _logger.LogTrace("Applicant not found for Delete with Id" + id);
                 return NotFound();
             }
             return applicant;
