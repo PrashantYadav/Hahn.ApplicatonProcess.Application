@@ -1,0 +1,71 @@
+<h1>{{actionType}} applicant</h1>
+<form [formGroup]="form" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+    <div class="form-group row">
+        <label class=" control-label col-md-12">Title</label>
+        <div class="col-md-12">
+            <input class="form-control" type="text" formControlName="name">
+        </div>
+        <span class="text-danger ml-3" *ngIf="name?.invalid && name?.touched">
+            Name is required.
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class=" control-label col-md-12">FamilyName</label>
+        <div class="col-md-12">
+            <input class="form-control" type="text" formControlName="familyName">
+        </div>
+        <span class="text-danger ml-3" *ngIf="familyName?.invalid && familyName?.touched">
+            Family Name is required.
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class=" control-label col-md-12">Address</label>
+        <div class="col-md-12">
+            <input class="form-control" type="text" formControlName="address">
+        </div>
+        <span class="text-danger ml-3" *ngIf="address?.invalid && address?.touched">
+            Address is required.
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class=" control-label col-md-12">Country Of Origin</label>
+        <div class="col-md-12">
+            <input class="form-control" type="text" formControlName="countryOfOrigin">
+        </div>
+        <span class="text-danger ml-3" *ngIf="countryOfOrigin?.invalid && countryOfOrigin?.touched">
+            CountryOfOrigin is required.
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class=" control-label col-md-12">Email Address</label>
+        <div class="col-md-12">
+            <input class="form-control" type="text" formControlName="eMailAdress">
+        </div>
+        <span class="text-danger ml-3" *ngIf="eMailAdress?.invalid && eMailAdress?.touched">
+            Email Address is required.
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class=" control-label col-md-12">Age</label>
+        <div class="col-md-12">
+            <input class="form-control" type="text" formControlName="age">
+        </div>
+        <span class="text-danger ml-3" *ngIf="age?.invalid && age?.touched">
+            Age is required.
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class=" control-label col-md-12">Hired</label>
+        <div class="col-md-12">
+            <input class="form-control" type="text" formControlName="hired">
+        </div>
+        <span class="text-danger ml-3" *ngIf="hired?.invalid && hired?.touched">
+            Hired is required.
+        </span>
+    </div>
+
+    <div class="form-group">
+        <div *ngIf="formDir.valid"><button type="submit" class="btn btn-success float-right">Save</button></div>
+        <button class="btn btn-secondary float-left" (click)="cancel()">Cancel</button>
+    </div>
+</form>

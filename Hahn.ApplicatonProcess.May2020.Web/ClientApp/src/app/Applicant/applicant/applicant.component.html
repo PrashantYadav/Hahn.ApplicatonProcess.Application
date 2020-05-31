@@ -1,0 +1,33 @@
+<ng-container *ngIf="(applicant$ | async) as applicant; else loading">
+
+    <div id="element1">
+        <p>First Name:</p>
+    </div>
+    <div id="element2">{{ applicant.name }}</div>
+    <div id="element1">
+        <p>Last Name:</p>
+    </div>
+    <div id="element2">{{ applicant.familyName }}</div>
+    <div id="element1">
+        <p>Address:</p>
+    </div>
+    <div id="element2">{{ applicant.address }}</div>
+    <div id="element1">
+        <p>Country Of Origin:</p>
+    </div>
+    <div id="element2">{{ applicant.countryOfOrigin }}</div>
+    <div id="element1">
+        <p>Email Address:</p>
+    </div>
+    <div id="element2">{{ applicant.eMailAdress }}</div>
+    <div id="element1">
+        <p>Age:</p>
+    </div>
+    <div id="element2">{{ applicant.age }}</div>
+    <div id="element1">
+        <p>Is Hired:</p>
+    </div>
+    <div id="element2">{{ applicant.hired }}</div>
+
+</ng-container>
+<ng-template #loading>Loading…</ng-template>

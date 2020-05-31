@@ -1,0 +1,29 @@
+<h1>Applicants</h1>
+
+<p *ngIf="!(applicants$ | async)"><em>Loading...</em></p>
+<p>
+  <a [routerLink]="['/add']" class="btn btn-primary float-right mb-3">New post</a>
+</p>
+
+<table class="table table-sm table-hover" *ngIf="(applicants$ | async)?.length>0">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Age</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let applicant of (applicants$ | async)">
+      <td>{{ applicant.id }}</td>
+      <td><a [routerLink]="['/applicant/', applicant.id]">{{ applicant.name }}</a></td>
+      <td>{{ applicant.familyName }}</td>
+      <td>{{ applicant.age }}</td>
+      <td><a [routerLink]="['/applicant/edit/', applicant.id]" class="btn btn-primary btn-sm float-right">Edit</a></td>
+      <td><a [routerLink]="" (click)="delete(applicant.id)" class="btn btn-danger btn-sm float-right">Delete</a></td>
+    </tr>
+  </tbody>
+</table>
